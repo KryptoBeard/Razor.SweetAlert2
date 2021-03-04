@@ -96,6 +96,26 @@ namespace CurrieTechnologies.Razor.SweetAlert2
             return await tcs.Task.ConfigureAwait(false);
         }
 
+        /// <summary>
+        /// Display alert without waiting for response.
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="message"></param>
+        /// <param name="icon"></param>
+        /// <returns></returns>
+        public async void FireAndForget(string title = null, string message = null, SweetAlertIcon icon = null)
+        {
+            Guid requestId = Guid.NewGuid();
+  
+            await jSRuntime.InvokeAsync<object>(
+                "CurrieTechnologies.Razor.SweetAlert2.FireAndForget",
+                requestId,
+                title,
+                message,
+                icon?.ToString())
+                .ConfigureAwait(false);
+        }
+
         [JSInvokable]
         public static Task ReceiveFireResult(string requestId, SweetAlertResult result)
         {

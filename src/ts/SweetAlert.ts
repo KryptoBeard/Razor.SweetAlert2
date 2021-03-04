@@ -388,6 +388,21 @@ razorSwal.Fire = (
     dispatchFireResult(requestId, result);
   });
 };
+razorSwal.FireAndForget = (
+    requestId: string,
+    title: string | null,
+    message: string | null,
+    icon: SweetAlertIcon | null
+): void => {
+    const params: SweetAlertArrayOptions = [
+        title ?? undefined,
+        message ?? undefined,
+        icon ?? undefined,
+    ];
+    Swal.fire(params[0], params[1], params[2]);//.then((result): void => {
+    //});
+};
+
 
 razorSwal.FireSettings = (requestId: string, settingsPoco: SimpleSweetAlertOptions): void => {
   const swalSettings = getSwalSettingsFromPoco(settingsPoco, requestId, false);
