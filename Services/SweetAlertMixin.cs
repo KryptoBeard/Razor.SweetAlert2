@@ -15,7 +15,21 @@
             this.storedOptions = settings;
             this.swal = service;
         }
-
+        /// <summary>
+        /// Function to display a simple SweetAlert2 modal.
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="message"></param>
+        /// <param name="icon"></param>
+        /// <returns></returns>
+        public async void FireAndForget(string title = null, string message = null, SweetAlertIcon icon = null)
+        {
+            SweetAlertOptions newSettings = this.Mix(this.storedOptions);
+            //newSettings.Title = title;
+            //newSettings.Html = message ?? newSettings.Html;
+            //newSettings.Icon = icon ?? newSettings.Icon;
+             this.swal.FireAndForget(title,message,icon);
+        }
         /// <summary>
         /// Function to display a simple SweetAlert2 modal.
         /// </summary>
