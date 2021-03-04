@@ -412,6 +412,12 @@ razorSwal.FireSettings = (requestId: string, settingsPoco: SimpleSweetAlertOptio
   });
 };
 
+razorSwal.FireAndForgetSettings = (requestId: string, settingsPoco: SimpleSweetAlertOptions): void => {
+    const swalSettings = getSwalSettingsFromPoco(settingsPoco, requestId, false);
+
+    Swal.fire(swalSettings);
+};
+
 razorSwal.Queue = (
   requestId: string,
   optionIds: string[],

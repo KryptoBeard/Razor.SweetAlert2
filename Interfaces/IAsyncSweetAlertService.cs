@@ -6,6 +6,7 @@ namespace CurrieTechnologies.Razor.SweetAlert2
     internal interface IAsyncSweetAlertService
     {
         void FireAndForget(string title, string message, SweetAlertIcon icon);
+        void FireAndForget(SweetAlertOptions settings);
 
         Task<SweetAlertResult> FireAsync(string title, string message, SweetAlertIcon icon);
 

@@ -168,6 +168,33 @@ namespace CurrieTechnologies.Razor.SweetAlert2
                 settings.ToPOCO()).ConfigureAwait(false);
             return await tcs.Task.ConfigureAwait(false);
         }
+        /// <summary>
+        /// Function to display a SweetAlert2 modal, with an object of options, all being optional.
+        /// </summary>
+        /// <example>
+        /// <code>
+        /// Swal.FireAsync(new SweetAlertOptions {
+        ///     Title = "Auto close alert!",
+        ///     Text = "I will close in 2 seconds.",
+        ///     Timer = 2000
+        /// });
+        /// </code>
+        /// </example>
+        /// <param name="settings"></param>
+        public async void FireAndForget(SweetAlertOptions settings)
+        {
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
+            Guid requestId = Guid.NewGuid();
+
+            await jSRuntime.InvokeAsync<SweetAlertResult>(
+                "CurrieTechnologies.Razor.SweetAlert2.FireAndForgetSettings",
+                requestId,
+                settings.ToPOCO()).ConfigureAwait(false);
+        }
 
         private static void AddCallbackToDictionaries(SweetAlertOptions settings, Guid requestId)
         {

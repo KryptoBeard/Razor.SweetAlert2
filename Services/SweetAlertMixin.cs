@@ -22,7 +22,7 @@
         /// <param name="message"></param>
         /// <param name="icon"></param>
         /// <returns></returns>
-        public async void FireAndForget(string title = null, string message = null, SweetAlertIcon icon = null)
+        public void FireAndForget(string title = null, string message = null, SweetAlertIcon icon = null)
         {
             SweetAlertOptions newSettings = this.Mix(this.storedOptions);
             //newSettings.Title = title;
@@ -58,6 +58,16 @@
             }
 
             return this.swal.FireAsync(this.Mix(settings));
+        }
+
+        public void FireAndForget(SweetAlertOptions settings)
+        {
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
+             this.swal.FireAndForget(this.Mix(settings));
         }
 
         /// <summary>
@@ -428,5 +438,7 @@
                 ScrollbarPadding = newSettings.ScrollbarPadding ?? this.storedOptions.ScrollbarPadding,
             };
         }
+
+ 
     }
 }
